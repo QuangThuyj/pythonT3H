@@ -1,3 +1,0 @@
-GET -> request.args.get("name", name=name)
-
-POST -> request.form.get("name", name=name)
