@@ -1,0 +1,20 @@
+<!--<script>-->
+<!--    fetch('http://127.0.0.1:5000/hello')-->
+<!--        .then(resp => resp.json())-->
+<!--        .then(result => alert(result.message));-->
+<!--</script>-->
+<div id="msg_pane"></div>
+<button onclick="getMessage()">
+    Get Message
+</button>
+
+<script>
+    async function getMessage() {
+        var url = 'http://127.0.0.1:5000/hello';
+        var resp = await fetch(url);
+        var result = await resp.json();
+        var panel = document.getElementById('msg_pane');
+        panel.innerHTML = result.message;
+        // console.log(result);
+    }
+</script>

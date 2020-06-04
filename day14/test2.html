@@ -1,0 +1,23 @@
+Comment: <input type="text" id="comment"> <br>
+<button onclick="comment()">Comment</button>
+<div id="comment_pane"></div>
+<script>
+    async function addComment(comment) {
+        var body = {"comment": comment};
+        var headers = {"Content-Type": "application/json"};
+        var resp = await fetch('http://127.0.0.1:5000/add_comment',
+            {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: headers
+            })
+        var result = await resp.json();
+        return result.new_comment
+    }
+
+    async function comment() {
+        var comment = document.getElementById('comment').value;
+        var new_commnet = await addComment(comment);
+        document.getElementById('comment_pane').innerHTML += '<br/>' + new_commnet;
+    }
+</script>
