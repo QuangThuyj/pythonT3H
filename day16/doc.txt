@@ -1,0 +1,8 @@
+pip install django
+
+new pj: django-admin startproject hello
+cd hello
+cd hello
+python manage.py runserver
+
+python manage.py statrtapp app1
