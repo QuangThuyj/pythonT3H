@@ -1,0 +1,7 @@
+<form action="/app/register" method="POST">
+    {%csrf_token%}
+    <table>
+         {{form}}
+    </table>
+    <input type="submit" name="submit">
+</form>

@@ -1,0 +1,9 @@
+<h3>Sign up</h3>
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Username: <input type="text" name="username"></p>
+    <p>Password: <input type="password" name="password1"></p>
+    <p>Confirm Password: <input type="password" name="password2"></p>
+    {{ form.errors }}
+    <input type="submit" name="submit" value="Sing up">
+</form>

@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<div class="container mt-3">
+    <form action="">
+        <input class="form-control" name="keyword" placeholder="Nhập tên/ Mã tìm kiếm" value="{{ keyword }}">
+    </form>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã HS</th>
+            <th>Họ Tên</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in curItems %}
+        <tr>
+            <td>{{ forloop.counter|add:offset }}</td>
+            <td>{{ s.studentNo }}</td>
+            <td>{{ s.studentName }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="?page=1&keyword={{ keyword}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+       {% if page > 1 %}
+    <li class="page-item"><a class="page-link" href="?page={{page|add:-1}}&keyword={{ keyword}}">&lsaquo;</a></li>
+      {% else %}
+      <span class="page-link" href="?page={{page|add:-1}}&keyword={{ keyword}}">&lsaquo;</span>
+      {% endif %}
+       {% if page < num_pages %}
+    <li class="page-item"><a class="page-link" href="?page={{page|add:1}}&keyword={{ keyword}}">&rsaquo;</a></li>
+     {% else %}
+        <span>&rsaquo;</span>
+    {% endif %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ num_pages }}&keyword={{ keyword}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+    <a href="?page=1&keyword={{ keyword}}">First</a>
+    {% if page > 1 %}
+        <a href="?page={{page|add:-1}}&keyword={{ keyword}}">Prev</a>
+    {% else %}
+        <span>Prev</span>
+    {% endif %}
+
+    {% if page < num_pages %}
+        <a href="?page={{page|add:1}}&keyword={{ keyword}}">Next</a>
+    {% else %}
+        <span>Next</span>
+    {% endif %}
+    <a href="?page={{ num_pages }}&keyword={{ keyword}}">Last</a>
+    {% if num_pages > 1 %}
+    <br>Trang thứ {{page}} trên tổng số {{num_pages}} trang
+    <br>Tổng số: {{total}}
+    {% endif %}
+</div>

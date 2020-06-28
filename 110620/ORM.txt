@@ -1,0 +1,35 @@
+ORM: 
+python manage.py shell
+from app.models import *
+Product.objects.all()
+
+ Product(code='p1', name='san pham 1', price=10000).save()
+
+p=Product.objects.get(pk=1) #id=1
+p=Product.objects.get(code='P1')
+p=Product.objects.get(code='P1', price=1000)
+p1 = Product.objects.filter(pk=1).first()
+p=Product.objects.filter(name__startswith='san pham') /endswith / name__contains
+Product.objects.filter(price__gt=15000) 
+__gt =  greater than >
+__lt = less than <
+__gte = greater than or qual >= 
+__lte = less than or equal <=
+__ne = not equal <>
+
+
+Product.objects.filter(name__startswith='san pham', price__gt=15000) = Product.objects.filter(name__startswith='san pham').filter( price__gt=15000))
+
+Product.objects.all()
+if name!= '':
+    products = Product.filter.(name__contains=name)
+if price != None:
+    products = Product.filter.(price__gt=price)
+
+from django.db.models import Q
+Product.objects.filter(Q(code__contains='01') | Q(name__contains='01'))
+
+Product.objects.filter(~Q(price = 10000))
+
+Product.objects.filter(category__code='C1')
+ON Category.id=product.category_id WHERE category.code = 'C1'

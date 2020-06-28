@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<table class="table">
+    <thead>
+    <tr>
+        <th style="width: 10%">STT</th>
+        <th style="width: 35%">Mã</th>
+        <th style="width: 40%">Tên</th>
+        <th style="width: 15%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for c in category_list %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{c.code}}</td>
+        <td>{{c.name}}</td>
+        <td></td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+<a href="/add_category" class="btn btn-primary">Thêm mới sản phẩm</a>
