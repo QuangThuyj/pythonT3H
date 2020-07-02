@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/180620/django_products" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/day 15/flask_products" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/django/28062020/django_products" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/html_samples" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/samples/samples" vcs="Git" />
   </component>
