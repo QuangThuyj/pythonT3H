@@ -2,18 +2,18 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div id="app" class="container mt-3" style="max-width: 30%">
-    <form id="fmt" @submit.prevent = 'save()'>
+    <form id="fmt" @submit.prevent='save()'>
         <div class="form-group">
             <label>Code</label>
-            <input type="text" class="form-control" placeholder="code" name="code">
+            <input type="text" class="form-control" placeholder="code" name="code" :value="product.code">
         </div>
         <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" placeholder="name" name="name">
+            <input type="text" class="form-control" placeholder="name" name="name" :value="product.name">
         </div>
         <div class="form-group">
             <label>Price</label>
-            <input type="text" class="form-control" placeholder="price" name="price">
+            <input type="text" class="form-control" placeholder="price" name="price" :value="product.price">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -23,7 +23,17 @@
     new Vue({
         el: '#app',
         data: {
+            product: {},
             API_URL: 'http://localhost:8000/app'
+        },
+        created: async function () {
+            var pos = location.href.indexOf('?id=');
+            if (pos > 0) {
+                var id = location.href.substring(pos + 4);
+                var resp = await fetch(this.API_URL + '/get_product_detail/' + id);
+                var result = await resp.json();
+                this.product = result.product;
+            }
         },
         methods: {
             save: async function () {

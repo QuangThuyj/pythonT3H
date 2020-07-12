@@ -11,6 +11,7 @@
                 <th>Code</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th style="width: 15%">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,10 @@
                 <td>{{p.code}}</td>
                 <td>{{p.name}}</td>
                 <td>{{p.price}}</td>
+                <td>
+                    <a :href="`form.html?id=${p.id}`" class="btn btn-sm btn-info">Edit</a>
+                    <a :href="`javascript:deleteProduct(${p.id})`" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
         </tbody>
 
