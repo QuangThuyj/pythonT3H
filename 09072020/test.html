@@ -1,0 +1,21 @@
+<body onload="loadData()">
+<ul id="product_list">
+
+</ul>
+</body>
+<script>
+    async function loadData() {
+        var url = 'http://localhost:8000/app/get_product_list';
+        var resp = await fetch(url);
+        var result = await resp.json()
+        console.log(result)
+        var html = '';
+        for (var i = 0; i < result.products.length; i++) {
+            html += '<li>' + result.products[i].name + '</li>';
+        }
+        document.getElementById('product_list').innerHTML = html;
+        // fetch('http://localhost:8000/app/get_product_list')
+        //     .then(resp => resp.json())
+        //     .then(result => console.log(result));
+    }
+</script>

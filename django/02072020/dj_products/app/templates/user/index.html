@@ -1,0 +1,40 @@
+{% extends 'user/base.html' %}
+
+{% block navbar %}
+{% with tab=1 %}
+{{ block.super }}
+{% endwith %}
+{% endblock %}
+
+{% block body %}
+<form id="fmt" class="mt-3">
+    <input name='keyword' value="{{ keyword }}" class="form-control" placeholder="Tìm sản phẩm">
+    <select name='categoryId' class="form-control mt-3" onchange="document.getElementById('fmt').submit()">
+        <option value="">--Chọn nhóm sản phẩm--</option>
+        {%for category in categories %}
+        <option {% if category.id== categoryId %}selected{% endif %}
+                value="{{category.id}}">{{category.name}}
+        </option>
+        {% endfor %}
+    </select>
+</form>
+
+<ul v-if="products.length > 0" class="list-unstyled row">
+    {% for product in products %}
+    <li class="list-item col-sm-4 mt-3">
+        <div>
+            <a href="{% url 'productDetail' product.id %}?back_url={{request.get_full_path|urlencode}}">
+                <img width="300px" height="300px" src="{{product.imageURL}}" alt="{{product.name}}">
+            </a>
+            <div>
+                <h5>
+                    <a href="{% url 'productDetail' product.id %}?back_url={{request.get_full_path|urlencode}}">
+                        {{ product.name }}
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

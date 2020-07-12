@@ -1,0 +1,18 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+    {{message}}
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: '',
+            API_URL: 'http://localhost:8000/app'
+        },
+        created: async function () {
+            var resp = await fetch(this.API_URL + '/hello');
+            var result = await resp.json();
+            this.message = result.message;
+        },
+    })
+</script>
