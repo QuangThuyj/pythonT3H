@@ -1,0 +1,42 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div id="app" class="container mt-3" style="max-width: 30%">
+    <form id="fmt" @submit.prevent = 'save()'>
+        <div class="form-group">
+            <label>Code</label>
+            <input type="text" class="form-control" placeholder="code" name="code">
+        </div>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="name" name="name">
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control" placeholder="price" name="price">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            API_URL: 'http://localhost:8000/app'
+        },
+        methods: {
+            save: async function () {
+                var formDate = new FormData(document.getElementById('fmt'));
+                var url = this.API_URL + '/create_product';
+                var resp = await fetch(url, {method: 'POST', body: formDate})
+                var result = await resp.json();
+                if (result.success) {
+                    location.href = 'index.html';
+                } else {
+                    alert("error when save product")
+                }
+            }
+        },
+    })
+</script>
