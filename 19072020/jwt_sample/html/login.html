@@ -1,0 +1,22 @@
+<div>
+    <p>username: <input type="text" id="username"></p>
+    <p>password: <input type="password" id="password"></p>
+    <button onclick="logIn()">Login</button>
+</div>
+<script>
+    async function logIn() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var resp = await fetch('http://127.0.0.1:8000/api/token',
+            {
+                method: 'POST',
+                body: JSON.stringify({username: username, password: password}),
+                headers: {'content-Type': 'application/json'}
+            }
+        );
+        var result = await resp.json();
+        if (result.access) {
+
+        }
+    }
+</script>
